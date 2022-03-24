@@ -42,7 +42,7 @@ public class EmployeePayrollService {
 	 * 
 	 * @param consoleInputReader
 	 */
-	private void readEmployeePayrollData(Scanner consoleInputReader) {
+	public void readEmployeePayrollData(Scanner consoleInputReader) {
 		System.out.println("Enter Employee ID: ");
 		int id = consoleInputReader.nextInt();
 		System.out.println("Enter Employee Name: ");
@@ -55,8 +55,31 @@ public class EmployeePayrollService {
 	/**
 	 * Method to print employee payroll from emploeePayrollList
 	 */
-	private void writeEmployeePayrollData() {
+	public void writeEmployeePayrollData() {
 		System.out.println("\nEmployee Payroll is\n" + employeePayrollList);
 	}
 
+	/**
+	 * Method to print Employee Payroll
+	 * 
+	 * @param ioService
+	 */
+	public void printData(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO))
+			new EmployeePayrollFileIOService().printData();
+
+	}
+
+	/**
+	 * Method to count no. of entries in file
+	 * 
+	 * @param ioService
+	 * @return: entries
+	 */
+	public long countEntries(IOService ioService) {
+		long entries = 0;
+		if (ioService.equals(IOService.FILE_IO))
+			entries = new EmployeePayrollFileIOService().countEntries();
+		return entries;
+	}
 }
